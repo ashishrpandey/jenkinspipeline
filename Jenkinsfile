@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     stages {
         stage ('Checkout') {
           steps {
@@ -17,8 +17,8 @@ pipeline {
         stage('Deploy') {
           steps {
             input 'Do you approve the deployment?'
-            cp -r target/*.jar /opt/pet/
-            nohup java -jar /opt/pet/spring-petclinic-1.5.1.jar &'
+            sh 'cp -r target/*.jar /opt/pet/'
+            sh 'nohup java -jar /opt/pet/spring-petclinic-1.5.1.jar &'
           }
         }
     }
